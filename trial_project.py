@@ -20,9 +20,9 @@ import matplotlib.pyplot as plt
 
 print("Seemed to work,huh")
 
-train_path = '/content/drive/My Drive/Colab Notebooks/chest_xray11/train'
-val_path = '/content/drive/My Drive/Colab Notebooks/chest_xray11/val'
-test_path = '/content/drive/My Drive/Colab Notebooks/chest_xray11/test'
+train_path = ''
+val_path = ''
+test_path = ''
 
 test_norm = ImageDataGenerator(rescale = 1./255)  #Image normalization.
 train_batch = test_norm.flow_from_directory(train_path,target_size = (500,500),classes = ['NORMAL','PNEUMONIA'],batch_size=30)
