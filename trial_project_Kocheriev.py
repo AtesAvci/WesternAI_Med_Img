@@ -49,9 +49,36 @@ classifier.summary()
 
 #network compiling
 classifier.compile(loss = keras.losses.binary_crossentropy, optimizer = 'adam',metrics=['accuracy'])
-classifier.fit(train_batch,epochs = 5, steps_per_epoch=15,validation_data=val_batch,validation_steps=5)
+
+#it is stored in history, since it works out for graphics
+history = classifier.fit(train_batch,epochs = 5, steps_per_epoch=15,validation_data=val_batch,validation_steps=5)
+
 
 
 #printing overall accuracy
+
+#not sure whether it should be history or classifier here
 test_accu = classifier.evaluate_generator(test_batch,steps=10)
 print("Test accuracy is: ", test_accu[1]*100, '%' )
+
+
+
+#graphs 
+
+#accuracy
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Model Accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Training set', 'Validation set'], loc='upper left')
+plt.show()
+
+#loss
+plt.plot(history.history['val_loss'])
+plt.plot(history.history['loss'])
+plt.title('Model Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Training set', 'Test set'], loc='upper left')
+plt.show()
